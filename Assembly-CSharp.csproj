@@ -42,7 +42,6 @@
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Airborne\PlayerFallData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Stopping\PlayerStopData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\PlayerDashData.cs" />
-     <Compile Include="Assets\Scripts\NPC\TaskManager.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraZoom.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Moving\PlayerWalkData.cs" />
      <Compile Include="Assets\Scripts\NPC\CollectTask\Item.cs" />

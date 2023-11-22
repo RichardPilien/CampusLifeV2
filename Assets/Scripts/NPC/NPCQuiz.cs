@@ -2,104 +2,48 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Basic3rdPersonMovementAndCamera;
 
 public class NPCQuiz : MonoBehaviour
 {
-    public string nameOfNPC;
-    public TextMeshProUGUI nameOfNPCText;
-    private bool interactNPC = false;
+    public string npcName;
+    public TextMeshProUGUI npcNameText;
+
+    private bool interactingNPC = false;
+    private bool isQuizActive = false;
+    private bool hasAcceptedQuiz = false;
+    private bool isQuizComplete = false;
+    private bool addQuestion = false;
+    private bool canTakeQuestion = false;
+    private int currentQuestionIndex = 0;
+    private int correctAnswersCount = 0;
+
+    [TextArea(6, 10)]
     public string[] questions;
     public bool[] answers;
-    public TextMeshProUGUI fText;
-    public TextMeshProUGUI tText;
+
+    public TextMeshProUGUI falseChoiceText;
+    public TextMeshProUGUI trueChoiceText;
+    // public TextMeshProUGUI quizResultText;
+
     public GameObject choicesGUI;
     public GameObject dialogueGUI;
     public TextMeshProUGUI dialogueText;
     public GameObject interactGUI;
     public TextMeshProUGUI interactText;
 
-    private bool isQuizActive = false;
-    private bool hasAcceptedQuiz = false;
-    private bool isQuizComplete = false;
-    private bool addQuestion = false;
-    private int currentQuestionIndex = 0;
-    private int correctAnswersCount = 0; // Variable to store the count of correct answers
-
-    // private PlayerMovement playerMovement;
-
-    private QuizManager quizManager; // Reference to the QuizManager script
-
-    //public bool isQuizNPC = false; // Flag to check if the NPC is a quiz NPC
-
-
+    private QuizManager quizManager;
 
     void Start()
     {
-        // playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-
         quizManager = GameObject.FindGameObjectWithTag("QuizManager").GetComponent<QuizManager>();
     }
 
     void Update()
     {
-        if (interactNPC == true)
+        if (interactingNPC)
         {
-            if (isQuizActive && (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F)))
-            {
-                string playerAnswer = Input.GetKeyDown(KeyCode.T) ? "True" : "False";
-                CheckAnswer(playerAnswer);
-            }
-
-            if (addQuestion == true)
-            {
-                quizManager.UpdateTotalQuestions(questions.Length);
-                quizManager.quizCompleted = false;
-                if (questions.Length == questions.Length)
-                {
-                    addQuestion = false;
-                }
-            }
-
-            if (interactNPC && Input.GetKeyDown(KeyCode.F))
-            {
-                interactGUI.SetActive(false);
-                if (isQuizComplete == false)
-                {
-                    nameOfNPCText.text = nameOfNPC;
-                    interactText.text = nameOfNPC;
-
-                    if (nameOfNPC == "Mr. Dela Cruz")
-                    {
-                        dialogueText.text = "I am Mr. Dela Cruz and I have a quiz for you";
-
-                        tText.text = questions[currentQuestionIndex];
-                    }
-                    else if (nameOfNPC == "Mr. Bautista")
-                    {
-                        dialogueText.text = "I am Mr. Bautista and I have a quiz for you";
-                    }
-                    else if (nameOfNPC == "Ms. Gomez")
-                    {
-                        dialogueText.text = "I am Ms. Gomez and I have a quiz for you";
-                    }
-                    else if (nameOfNPC == "Ms. Fernandez")
-                    {
-                        dialogueText.text = "I am Ms. Fernandez and I have a quiz for you";
-                    }
-
-                    dialogueGUI.SetActive(true);
-
-                    if (hasAcceptedQuiz)
-                    {
-                        isQuizActive = true;
-                        DisplayQuestion();
-                    }
-                    else
-                    {
-                        StartCoroutine(ProcessPlayerInput());
-                    }
-                }
-            }
+            HandleQuizInput();
         }
     }
 
@@ -107,10 +51,9 @@ public class NPCQuiz : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            interactNPC = true;
-
+            interactingNPC = true;
             interactGUI.SetActive(true);
-            interactText.text = nameOfNPC;
+            interactText.text = npcName;
         }
     }
 
@@ -118,57 +61,47 @@ public class NPCQuiz : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //isQuizNPC = false;
-            interactNPC = false;
-            isQuizActive = false;
-            hasAcceptedQuiz = false;
-            currentQuestionIndex = 0;
-            // playerMovement.enabled = true;
-            interactGUI.SetActive(false);
-            dialogueGUI.SetActive(false);
+            ResetQuizState();
         }
     }
 
-    void DisplayQuestion()
+    void HandleQuizInput()
     {
-        if (currentQuestionIndex < questions.Length)
+        if (isQuizActive && (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.F)))
         {
-            dialogueText.text = questions[currentQuestionIndex];
-            choicesGUI.SetActive(true);
-            dialogueGUI.SetActive(true);
+            string playerAnswer = Input.GetKeyDown(KeyCode.T) ? "True" : "False";
+            CheckAnswer(playerAnswer);
         }
-        else
+
+        if (addQuestion)
         {
-            dialogueText.text = "Quiz Complete";
-            dialogueGUI.SetActive(true);
-            UpdateCorrectAnswersText();
-            choicesGUI.SetActive(false);
-            // playerMovement.enabled = true;
-            isQuizComplete = true;
-            // You can add additional actions or rewards here when the quiz is completed.
+            UpdateQuizManager();
+        }
+
+        if (interactingNPC && Input.GetKeyDown(KeyCode.F))
+        {
+            StartQuizDialogue();
         }
     }
 
     void CheckAnswer(string playerAnswer)
     {
+        if (isQuizComplete) return;
 
-        if (isQuizComplete == false)
+        bool correctAnswer = answers[currentQuestionIndex];
+        if (playerAnswer.ToLower() == correctAnswer.ToString().ToLower())
         {
-            bool correctAnswer = answers[currentQuestionIndex];
-            if (playerAnswer.ToLower() == correctAnswer.ToString().ToLower())
-            {
-                Debug.Log("Correct!");
-                correctAnswersCount++; // Increment the count of correct answers
-                quizManager.UpdateTotalCorrectAnswers(true); // Update the total correct answers in the QuizManager
-            }
-            else
-            {
-                Debug.Log("Wrong answer.");
-                quizManager.UpdateTotalCorrectAnswers(false);
-            }
+            Debug.Log("Correct!");
+            correctAnswersCount++;
+            quizManager.UpdateTotalCorrectAnswers(true);
         }
-        currentQuestionIndex++;
+        else
+        {
+            Debug.Log("Wrong answer.");
+            quizManager.UpdateTotalCorrectAnswers(false);
+        }
 
+        currentQuestionIndex++;
         if (currentQuestionIndex >= questions.Length)
         {
             currentQuestionIndex = questions.Length;
@@ -176,6 +109,101 @@ public class NPCQuiz : MonoBehaviour
         }
 
         DisplayQuestion();
+    }
+
+    void UpdateQuizManager()
+    {
+        quizManager.UpdateTotalQuestions(questions.Length);
+        quizManager.quizCompleted = false;
+        if (questions.Length == questions.Length)
+        {
+            addQuestion = false;
+        }
+    }
+
+    void StartQuizDialogue()
+    {
+        interactGUI.SetActive(false);
+        if (isQuizComplete == false)
+        {
+            SetNPCDialogue(npcName);
+
+            dialogueGUI.SetActive(true);
+
+            if (hasAcceptedQuiz)
+            {
+                isQuizActive = true;
+                DisplayQuestion();
+            }
+            else
+            {
+                StartCoroutine(ProcessPlayerInput());
+            }
+        }
+    }
+
+    void SetNPCDialogue(string npcName)
+    {
+        interactGUI.SetActive(false);
+
+        if (isQuizComplete == false)
+        {
+            npcNameText.text = npcName;
+            interactText.text = npcName;
+            Debug.Log("count" + QuizManager.answeredQuizCount);
+
+            if (npcName == "Mr. Dela Cruz")
+            {
+                canTakeQuestion = true;
+                dialogueText.text = "I am Mr. Dela Cruz and I have a quiz for you";
+            }
+            else if (npcName == "Mr. Bautista")
+            {
+                canTakeQuestion = true;
+                dialogueText.text = "I am Mr. Bautista and I have a quiz for you";
+            }
+            else if (npcName == "Ms. Gomez")
+            {
+                canTakeQuestion = true;
+                dialogueText.text = "I am Ms. Gomez and I have a quiz for you";
+            }
+            else if (npcName == "Ms. Fernandez")
+            {
+                if (QuizManager.answeredQuizCount == 3)
+                {
+                    dialogueText.text = "I am Ms. Fernandez and I have a quiz for you";
+                    canTakeQuestion = true;
+                }
+                else
+                {
+                    canTakeQuestion = false;
+                    dialogueText.text = "You can't take this exam yet.";
+                }
+            }
+
+            dialogueGUI.SetActive(true);
+
+            if (hasAcceptedQuiz)
+            {
+                isQuizActive = true;
+                DisplayQuestion();
+            }
+            else
+            {
+                StartCoroutine(ProcessPlayerInput());
+            }
+        }
+    }
+
+
+    void ResetQuizState()
+    {
+        interactingNPC = false;
+        isQuizActive = false;
+        hasAcceptedQuiz = false;
+        currentQuestionIndex = 0;
+        interactGUI.SetActive(false);
+        dialogueGUI.SetActive(false);
     }
 
     IEnumerator ProcessPlayerInput()
@@ -191,19 +219,13 @@ public class NPCQuiz : MonoBehaviour
             dialogueGUI.SetActive(true);
         }
 
-
-
         while (true)
         {
             yield return null;
 
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                addQuestion = true;
-                hasAcceptedQuiz = true;
-                isQuizActive = true;
-                // playerMovement.enabled = false;
-                DisplayQuestion();
+                HandleQuizAcceptance();
                 yield break;
             }
             else if (Input.GetKeyDown(KeyCode.N))
@@ -215,8 +237,140 @@ public class NPCQuiz : MonoBehaviour
         }
     }
 
+    void HandleQuizAcceptance()
+    {
+        Debug.Log("pindot Y");
+        if (canTakeQuestion)
+        {
+            addQuestion = true;
+            hasAcceptedQuiz = true;
+            isQuizActive = true;
+            DisplayQuestion();
+        }
+    }
+
+    void DisplayQuestion()
+    {
+        if (currentQuestionIndex < questions.Length)
+        {
+            dialogueText.text = questions[currentQuestionIndex];
+            choicesGUI.SetActive(true);
+            dialogueGUI.SetActive(true);
+            SetChoicesText();
+        }
+        else
+        {
+            if (currentQuestionIndex == 3)
+            {
+                QuizManager.answeredQuizCount++;
+                Debug.Log("count ng anwswerCount" + QuizManager.answeredQuizCount);
+                dialogueGUI.SetActive(true);
+                UpdateCorrectAnswersText();
+                choicesGUI.SetActive(false);
+                isQuizComplete = true;
+            }
+        }
+    }
+
+    void SetChoicesText()
+    {
+        if (npcName == "Mr. Dela Cruz")
+        {
+            SetMrDelaCruzChoices();
+        }
+        else if (npcName == "Mr. Bautista")
+        {
+            SetMrBautistaChoices();
+        }
+        else if (npcName == "Ms. Gomez")
+        {
+            SetMsGomezChoices();
+        }
+        else if (npcName == "Ms. Fernandez")
+        {
+            SetMsFernandezChoices();
+        }
+    }
+
+    void SetMrDelaCruzChoices()
+    {
+        if (currentQuestionIndex == 0)
+        {
+            falseChoiceText.text = "HTMPL";
+            trueChoiceText.text = "HTML";
+        }
+        else if (currentQuestionIndex == 1)
+        {
+            falseChoiceText.text = "String";
+            trueChoiceText.text = "Character";
+        }
+        else if (currentQuestionIndex == 2)
+        {
+            falseChoiceText.text = "Loobean";
+            trueChoiceText.text = "Boolean";
+        }
+    }
+
+    void SetMrBautistaChoices()
+    {
+        if (currentQuestionIndex == 0)
+        {
+            falseChoiceText.text = "Array";
+            trueChoiceText.text = "Set";
+        }
+        else if (currentQuestionIndex == 1)
+        {
+            falseChoiceText.text = "Relation";
+            trueChoiceText.text = "Duo";
+        }
+        else if (currentQuestionIndex == 2)
+        {
+            falseChoiceText.text = "Method";
+            trueChoiceText.text = "Function";
+        }
+    }
+
+    void SetMsGomezChoices()
+    {
+        if (currentQuestionIndex == 0)
+        {
+            falseChoiceText.text = "Tutorial";
+            trueChoiceText.text = "Algorithm";
+        }
+        else if (currentQuestionIndex == 1)
+        {
+            falseChoiceText.text = "Variable";
+            trueChoiceText.text = "Things";
+        }
+        else if (currentQuestionIndex == 2)
+        {
+            falseChoiceText.text = "Storage";
+            trueChoiceText.text = "Array";
+        }
+    }
+
+    void SetMsFernandezChoices()
+    {
+        if (currentQuestionIndex == 0)
+        {
+            falseChoiceText.text = "String";
+            trueChoiceText.text = "Character";
+        }
+        else if (currentQuestionIndex == 1)
+        {
+            falseChoiceText.text = "Array";
+            trueChoiceText.text = "Set";
+        }
+        else if (currentQuestionIndex == 2)
+        {
+            falseChoiceText.text = "Tutorial";
+            trueChoiceText.text = "Algorithm";
+        }
+    }
+
     void UpdateCorrectAnswersText()
     {
+        interactingNPC = false;
         dialogueText.text = "You scored " + correctAnswersCount.ToString() + " out of " + questions.Length.ToString();
     }
 }
