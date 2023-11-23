@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Basic3rdPersonMovementAndCamera
 {
     public class CollectTaskGiver : MonoBehaviour
     {
-        public NPCCollectTask taskToGive;
+        public string NPCName;
+        public string locationNPC;
+        public string courseTitle;
+        public string year;
+        public string questName;
+        [TextArea(5, 10)]
+        public string questDescription;
+        public bool taskComplete = false;
         public string nameOfCollectible;
         public GameObject[] itemToCollect;
         public int numberOfItemCollected;
@@ -16,21 +24,23 @@ namespace Basic3rdPersonMovementAndCamera
         private bool isTaskInfoVisible = false;
         private bool isProgressVisible = true;
 
+        private GUIManager guiManager;
+
         public void Update()
         {
-            // taskToGive.InteractGUI = GameObject.Find("InteractGUI");
+            guiManager = GameObject.FindGameObjectWithTag("GUI").GetComponent<GUIManager>();
             if (interactedNPC && Input.GetKeyDown(KeyCode.F))
             {
-                if (!questStarted && taskToGive.taskComplete == false)
+                if (!questStarted && taskComplete == false)
                 {
                     GiveQuest();
                 }
 
-                if (taskToGive.taskComplete == true)
+                if (taskComplete == true)
                 {
-                    taskToGive.dialogueText.text = "Here is your Reward!";
-                    taskToGive.TaskInfoGUI.SetActive(false);
-                    taskToGive.ProgressGUI.SetActive(false);
+                    guiManager.dialogueText.text = "Here is your Reward!";
+                    guiManager.taskInfoGUI.SetActive(false);
+                    guiManager.progressGUI.SetActive(false);
                 }
             }
 
@@ -41,8 +51,8 @@ namespace Basic3rdPersonMovementAndCamera
                 isProgressVisible = !isProgressVisible;
 
                 // Set the visibility of TaskInfoGUI based on the boolean variable
-                taskToGive.TaskInfoGUI.SetActive(isTaskInfoVisible);
-                taskToGive.ProgressGUI.SetActive(isProgressVisible);
+                guiManager.taskInfoGUI.SetActive(isTaskInfoVisible);
+                guiManager.progressGUI.SetActive(isProgressVisible);
             }
         }
         private void OnTriggerEnter(Collider other)
@@ -51,15 +61,15 @@ namespace Basic3rdPersonMovementAndCamera
             {
                 interactedNPC = true;
 
-                if (taskToGive.InteractGUI == null)
+                if (guiManager.interactGUI == null)
                 {
                     Debug.Log("Null");
                 }
-                taskToGive.InteractGUI.SetActive(true);
+                guiManager.interactGUI.SetActive(true);
                 // taskToGive.DialogueGUI.SetActive(true);
-                if (taskToGive.interactText != null)
+                if (guiManager.interactText != null)
                 {
-                    taskToGive.interactText.text = taskToGive.NPCName;
+                    guiManager.interactText.text = NPCName;
                 }
             }
         }
@@ -69,8 +79,8 @@ namespace Basic3rdPersonMovementAndCamera
             if (other.CompareTag("Player"))
             {
                 interactedNPC = false;
-                taskToGive.InteractGUI.SetActive(false);
-                taskToGive.DialogueGUI.SetActive(false);
+                guiManager.interactGUI.SetActive(false);
+                guiManager.dialogueGUI.SetActive(false);
             }
         }
         public void CollectBook(int itemIndex)
@@ -86,7 +96,7 @@ namespace Basic3rdPersonMovementAndCamera
                     if (item != null)
                     {
                         Debug.Log("Collected");
-                        taskToGive.InteractGUI.SetActive(false);
+                        guiManager.interactGUI.SetActive(false);
                         numberOfItemCollected++;
 
                         // Collect the item and destroy it.
@@ -96,7 +106,7 @@ namespace Basic3rdPersonMovementAndCamera
                         itemToCollect[itemIndex] = null;
                         if (numberOfItemCollected >= numberOfItemToCollect)
                         {
-                            taskToGive.taskComplete = true;
+                            taskComplete = true;
                             questStarted = false;
                             UpdateTaskText();
                         }
@@ -113,41 +123,41 @@ namespace Basic3rdPersonMovementAndCamera
         {
             questStarted = true;
 
-            taskToGive.DialogueGUI.SetActive(true);
+            guiManager.dialogueGUI.SetActive(true);
 
-            taskToGive.courseTitleText.text = taskToGive.courseTitle;
-            taskToGive.yearText.text = taskToGive.year;
-            taskToGive.nameText.text = taskToGive.NPCName;
+            guiManager.npcNameText.text = NPCName;
+            guiManager.yearText.text = year;
+            guiManager.courseTitleText.text = courseTitle;
 
-            taskToGive.taskInfoTitle.text = taskToGive.questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
-            taskToGive.taskInfoTitleF1.text = taskToGive.questName;
-            taskToGive.location.text = taskToGive.locationNPC;
+            guiManager.taskInfoTitle.text = questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
+            guiManager.taskInfoTitleF1.text = questName;
+            guiManager.location.text = locationNPC;
 
-            taskToGive.dialogueText.text = taskToGive.questDescription;
-            taskToGive.taskInfoDescription.text = taskToGive.questDescription;
+            guiManager.dialogueText.text = questDescription;
+            guiManager.taskInfoDescription.text = questDescription;
 
-            taskToGive.progressText.text = taskToGive.questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
-            taskToGive.ProgressGUI.SetActive(true);
+            guiManager.progressText.text = questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
+            guiManager.progressGUI.SetActive(true);
 
-            Debug.Log("Quest Started! " + taskToGive.questName);
+            Debug.Log("Quest Started! " + questName);
         }
 
         public void UpdateTaskText()
         {
             if (questStarted == true)
             {
-                taskToGive.ProgressGUI.SetActive(true);
-                taskToGive.progressText.text = taskToGive.questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
+                guiManager.progressGUI.SetActive(true);
+                guiManager.progressText.text = questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
 
-                taskToGive.taskInfoTitle.text = taskToGive.questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
-                taskToGive.taskInfoTitleF1.text = taskToGive.questName;
+                guiManager.taskInfoTitle.text = questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
+                guiManager.taskInfoTitleF1.text = questName;
             }
             else
             {
-                taskToGive.progressText.text = taskToGive.questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
+                guiManager.progressText.text = questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
 
-                taskToGive.DialogueGUI.SetActive(true);
-                taskToGive.dialogueText.text = "Task Complete! Go back to NPC";
+                guiManager.dialogueGUI.SetActive(true);
+                guiManager.dialogueText.text = "Task Complete! Go back to NPC";
             }
         }
     }

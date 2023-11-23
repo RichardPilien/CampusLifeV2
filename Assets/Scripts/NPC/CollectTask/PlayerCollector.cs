@@ -7,12 +7,15 @@ namespace Basic3rdPersonMovementAndCamera
     public class PlayerCollector : MonoBehaviour
     {
         public CollectTaskGiver[] taskGiver;
-        public NPCCollectTask taskToGive;
+        public CollectTaskGiver taskToGive;
         private bool canCollect = false;
         private int itemIndex = -1; // Initialize with an invalid index.
         private string interactName;
+        private GUIManager guiManager;
         void Update()
         {
+            guiManager = GameObject.FindGameObjectWithTag("GUI").GetComponent<GUIManager>();
+
             if (canCollect && Input.GetKeyDown(KeyCode.F))
             {
                 CollectBook();
@@ -43,15 +46,15 @@ namespace Basic3rdPersonMovementAndCamera
                 {
                     if (giver.questStarted == true)
                     {
-                        taskToGive.InteractGUI.SetActive(true);
+                        guiManager.interactGUI.SetActive(true);
                         // taskToGive.interactText.text = giver.nameOfCollectible;
 
                     }
                 }
 
-                if (taskToGive.interactText != null)
+                if (guiManager.interactText != null)
                 {
-                    taskToGive.interactText.text = "[F] to Collect.";
+                    guiManager.interactText.text = "To Collect.";
                 }
 
                 // Loop through each element of the taskGiver array
@@ -79,7 +82,7 @@ namespace Basic3rdPersonMovementAndCamera
                 // Loop through each element of the taskGiver array
                 foreach (CollectTaskGiver giver in taskGiver)
                 {
-                    taskToGive.InteractGUI.SetActive(false);
+                    guiManager.interactGUI.SetActive(false);
                 }
                 itemIndex = -1; // Reset the itemIndex when the player leaves the sphere.
             }

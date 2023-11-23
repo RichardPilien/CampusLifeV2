@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\NPC\guiManager\GUIManager.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Stopping\PlayerStoppingState.cs" />
      <Compile Include="Assets\Scripts\MainMenu\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Moving\PlayerRunData.cs" />
@@ -44,11 +45,9 @@
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\PlayerDashData.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraZoom.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Moving\PlayerWalkData.cs" />
-     <Compile Include="Assets\Scripts\NPC\CollectTask\Item.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Landing\PlayerRollingState.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Landing\PlayerRollData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\PlayerGroundedState.cs" />
-     <Compile Include="Assets\Scripts\NPC\Mr.DelaCruz\QuizTask.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\PlayerIdlingState.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Moving\PlayerRunningState.cs" />
      <Compile Include="Assets\Scripts\MainMenu\MainMenu.cs" />
@@ -81,7 +80,6 @@
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\PlayerMovementState.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Utilities\Animations\PlayerAnimationEventTrigger.cs" />
      <Compile Include="Assets\Polytope Studio\Lowpoly_Demos\Environment_Free\Helpers\MouseLook.cs" />
-     <Compile Include="Assets\Scripts\NPC\CollectTask\CollectManager.cs" />
      <Compile Include="Assets\Scripts\Utilities\Colliders\CapsuleColliderUtility.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Moving\PlayerSprintData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Moving\PlayerSprintingState.cs" />
@@ -103,7 +101,6 @@
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\PlayerDashingState.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\PlayerStateReusableData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Moving\PlayerMovingState.cs" />
-     <Compile Include="Assets\Scripts\NPC\CollectTask\NPCCollectTask.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\PlayerGroundedData.cs" />
      <Compile Include="Assets\Scripts\NPC\CollectTask\PlayerCollector.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

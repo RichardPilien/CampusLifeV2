@@ -2,12 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 using Basic3rdPersonMovementAndCamera;
 
 public class NPCQuiz : MonoBehaviour
 {
     public string npcName;
-    public TextMeshProUGUI npcNameText;
+    // public TextMeshProUGUI npcNameText;
 
     private bool interactingNPC = false;
     private bool isQuizActive = false;
@@ -21,22 +22,13 @@ public class NPCQuiz : MonoBehaviour
     [TextArea(6, 10)]
     public string[] questions;
     public bool[] answers;
-
-    public TextMeshProUGUI falseChoiceText;
-    public TextMeshProUGUI trueChoiceText;
-    // public TextMeshProUGUI quizResultText;
-
-    public GameObject choicesGUI;
-    public GameObject dialogueGUI;
-    public TextMeshProUGUI dialogueText;
-    public GameObject interactGUI;
-    public TextMeshProUGUI interactText;
-
     private QuizManager quizManager;
+    private GUIManager guiManager;
 
     void Start()
     {
         quizManager = GameObject.FindGameObjectWithTag("QuizManager").GetComponent<QuizManager>();
+        guiManager = GameObject.FindGameObjectWithTag("GUI").GetComponent<GUIManager>();
     }
 
     void Update()
@@ -52,8 +44,8 @@ public class NPCQuiz : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             interactingNPC = true;
-            interactGUI.SetActive(true);
-            interactText.text = npcName;
+            guiManager.interactGUI.SetActive(true);
+            guiManager.interactText.text = npcName;
         }
     }
 
@@ -123,12 +115,12 @@ public class NPCQuiz : MonoBehaviour
 
     void StartQuizDialogue()
     {
-        interactGUI.SetActive(false);
+        guiManager.interactGUI.SetActive(false);
         if (isQuizComplete == false)
         {
             SetNPCDialogue(npcName);
 
-            dialogueGUI.SetActive(true);
+            guiManager.dialogueGUI.SetActive(true);
 
             if (hasAcceptedQuiz)
             {
@@ -144,44 +136,44 @@ public class NPCQuiz : MonoBehaviour
 
     void SetNPCDialogue(string npcName)
     {
-        interactGUI.SetActive(false);
+        guiManager.interactGUI.SetActive(false);
 
         if (isQuizComplete == false)
         {
-            npcNameText.text = npcName;
-            interactText.text = npcName;
+            guiManager.npcNameText.text = npcName;
+            guiManager.interactText.text = npcName;
             Debug.Log("count" + QuizManager.answeredQuizCount);
 
             if (npcName == "Mr. Dela Cruz")
             {
                 canTakeQuestion = true;
-                dialogueText.text = "I am Mr. Dela Cruz and I have a quiz for you";
+                guiManager.dialogueText.text = "I am Mr. Dela Cruz and I have a quiz for you";
             }
             else if (npcName == "Mr. Bautista")
             {
                 canTakeQuestion = true;
-                dialogueText.text = "I am Mr. Bautista and I have a quiz for you";
+                guiManager.dialogueText.text = "I am Mr. Bautista and I have a quiz for you";
             }
             else if (npcName == "Ms. Gomez")
             {
                 canTakeQuestion = true;
-                dialogueText.text = "I am Ms. Gomez and I have a quiz for you";
+                guiManager.dialogueText.text = "I am Ms. Gomez and I have a quiz for you";
             }
             else if (npcName == "Ms. Fernandez")
             {
                 if (QuizManager.answeredQuizCount == 3)
                 {
-                    dialogueText.text = "I am Ms. Fernandez and I have a quiz for you";
+                    guiManager.dialogueText.text = "I am Ms. Fernandez and I have a quiz for you";
                     canTakeQuestion = true;
                 }
                 else
                 {
                     canTakeQuestion = false;
-                    dialogueText.text = "You can't take this exam yet.";
+                    guiManager.dialogueText.text = "You can't take this exam yet.";
                 }
             }
 
-            dialogueGUI.SetActive(true);
+            guiManager.dialogueGUI.SetActive(true);
 
             if (hasAcceptedQuiz)
             {
@@ -202,8 +194,9 @@ public class NPCQuiz : MonoBehaviour
         isQuizActive = false;
         hasAcceptedQuiz = false;
         currentQuestionIndex = 0;
-        interactGUI.SetActive(false);
-        dialogueGUI.SetActive(false);
+        guiManager.interactGUI.SetActive(false);
+        guiManager.dialogueGUI.SetActive(false);
+        guiManager.choicesGUI.SetActive(false);
     }
 
     IEnumerator ProcessPlayerInput()
@@ -216,21 +209,21 @@ public class NPCQuiz : MonoBehaviour
         if (isQuizComplete == true)
         {
             // dialogueText.SetActive(false);
-            dialogueGUI.SetActive(true);
+            guiManager.dialogueGUI.SetActive(true);
         }
 
         while (true)
         {
             yield return null;
 
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (Input.GetMouseButtonDown(0))
             {
                 HandleQuizAcceptance();
                 yield break;
             }
             else if (Input.GetKeyDown(KeyCode.N))
             {
-                dialogueText.text = "You declined the quiz";
+                guiManager.dialogueText.text = "You declined the quiz";
                 Debug.Log("You declined the quiz.");
                 yield break;
             }
@@ -253,9 +246,9 @@ public class NPCQuiz : MonoBehaviour
     {
         if (currentQuestionIndex < questions.Length)
         {
-            dialogueText.text = questions[currentQuestionIndex];
-            choicesGUI.SetActive(true);
-            dialogueGUI.SetActive(true);
+            guiManager.dialogueText.text = questions[currentQuestionIndex];
+            guiManager.choicesGUI.SetActive(true);
+            guiManager.dialogueGUI.SetActive(true);
             SetChoicesText();
         }
         else
@@ -264,9 +257,9 @@ public class NPCQuiz : MonoBehaviour
             {
                 QuizManager.answeredQuizCount++;
                 Debug.Log("count ng anwswerCount" + QuizManager.answeredQuizCount);
-                dialogueGUI.SetActive(true);
+                guiManager.dialogueGUI.SetActive(true);
                 UpdateCorrectAnswersText();
-                choicesGUI.SetActive(false);
+                guiManager.choicesGUI.SetActive(false);
                 isQuizComplete = true;
             }
         }
@@ -296,18 +289,18 @@ public class NPCQuiz : MonoBehaviour
     {
         if (currentQuestionIndex == 0)
         {
-            falseChoiceText.text = "HTMPL";
-            trueChoiceText.text = "HTML";
+            guiManager.falseChoiceText.text = "HTMPL";
+            guiManager.trueChoiceText.text = "HTML";
         }
         else if (currentQuestionIndex == 1)
         {
-            falseChoiceText.text = "String";
-            trueChoiceText.text = "Character";
+            guiManager.falseChoiceText.text = "String";
+            guiManager.trueChoiceText.text = "Character";
         }
         else if (currentQuestionIndex == 2)
         {
-            falseChoiceText.text = "Loobean";
-            trueChoiceText.text = "Boolean";
+            guiManager.falseChoiceText.text = "Loobean";
+            guiManager.trueChoiceText.text = "Boolean";
         }
     }
 
@@ -315,18 +308,18 @@ public class NPCQuiz : MonoBehaviour
     {
         if (currentQuestionIndex == 0)
         {
-            falseChoiceText.text = "Array";
-            trueChoiceText.text = "Set";
+            guiManager.falseChoiceText.text = "Array";
+            guiManager.trueChoiceText.text = "Set";
         }
         else if (currentQuestionIndex == 1)
         {
-            falseChoiceText.text = "Relation";
-            trueChoiceText.text = "Duo";
+            guiManager.falseChoiceText.text = "Relation";
+            guiManager.trueChoiceText.text = "Duo";
         }
         else if (currentQuestionIndex == 2)
         {
-            falseChoiceText.text = "Method";
-            trueChoiceText.text = "Function";
+            guiManager.falseChoiceText.text = "Method";
+            guiManager.trueChoiceText.text = "Function";
         }
     }
 
@@ -334,18 +327,18 @@ public class NPCQuiz : MonoBehaviour
     {
         if (currentQuestionIndex == 0)
         {
-            falseChoiceText.text = "Tutorial";
-            trueChoiceText.text = "Algorithm";
+            guiManager.falseChoiceText.text = "Tutorial";
+            guiManager.trueChoiceText.text = "Algorithm";
         }
         else if (currentQuestionIndex == 1)
         {
-            falseChoiceText.text = "Variable";
-            trueChoiceText.text = "Things";
+            guiManager.falseChoiceText.text = "Variable";
+            guiManager.trueChoiceText.text = "Things";
         }
         else if (currentQuestionIndex == 2)
         {
-            falseChoiceText.text = "Storage";
-            trueChoiceText.text = "Array";
+            guiManager.falseChoiceText.text = "Storage";
+            guiManager.trueChoiceText.text = "Array";
         }
     }
 
@@ -353,24 +346,24 @@ public class NPCQuiz : MonoBehaviour
     {
         if (currentQuestionIndex == 0)
         {
-            falseChoiceText.text = "String";
-            trueChoiceText.text = "Character";
+            guiManager.falseChoiceText.text = "String";
+            guiManager.trueChoiceText.text = "Character";
         }
         else if (currentQuestionIndex == 1)
         {
-            falseChoiceText.text = "Array";
-            trueChoiceText.text = "Set";
+            guiManager.falseChoiceText.text = "Array";
+            guiManager.trueChoiceText.text = "Set";
         }
         else if (currentQuestionIndex == 2)
         {
-            falseChoiceText.text = "Tutorial";
-            trueChoiceText.text = "Algorithm";
+            guiManager.falseChoiceText.text = "Tutorial";
+            guiManager.trueChoiceText.text = "Algorithm";
         }
     }
 
     void UpdateCorrectAnswersText()
     {
         interactingNPC = false;
-        dialogueText.text = "You scored " + correctAnswersCount.ToString() + " out of " + questions.Length.ToString();
+        guiManager.dialogueText.text = "You scored " + correctAnswersCount.ToString() + " out of " + questions.Length.ToString();
     }
 }
