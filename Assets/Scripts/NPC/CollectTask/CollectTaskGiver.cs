@@ -23,6 +23,7 @@ namespace Basic3rdPersonMovementAndCamera
         private bool interactedNPC = false;
         private bool isTaskInfoVisible = false;
         private bool isProgressVisible = true;
+        private bool isTypingComplete = false;
 
         private GUIManager guiManager;
 
@@ -38,9 +39,11 @@ namespace Basic3rdPersonMovementAndCamera
 
                 if (taskComplete == true)
                 {
-                    guiManager.dialogueText.text = "Here is your Reward!";
-                    guiManager.taskInfoGUI.SetActive(false);
-                    guiManager.progressGUI.SetActive(false);
+                    StartCoroutine(TypeDialogue("Here is your Reward!", () =>
+                    {
+                        guiManager.taskInfoGUI.SetActive(false);
+                        guiManager.progressGUI.SetActive(false);
+                    }));
                 }
             }
 
@@ -55,6 +58,7 @@ namespace Basic3rdPersonMovementAndCamera
                 guiManager.progressGUI.SetActive(isProgressVisible);
             }
         }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -133,13 +137,13 @@ namespace Basic3rdPersonMovementAndCamera
             guiManager.taskInfoTitleF1.text = questName;
             guiManager.location.text = locationNPC;
 
-            guiManager.dialogueText.text = questDescription;
-            guiManager.taskInfoDescription.text = questDescription;
+            StartCoroutine(TypeDialogue(questDescription, () =>
+            {
+                guiManager.progressText.text = questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
+                guiManager.progressGUI.SetActive(true);
 
-            guiManager.progressText.text = questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
-            guiManager.progressGUI.SetActive(true);
-
-            Debug.Log("Quest Started! " + questName);
+                Debug.Log("Quest Started! " + questName);
+            }));
         }
 
         public void UpdateTaskText()
@@ -154,10 +158,30 @@ namespace Basic3rdPersonMovementAndCamera
             }
             else
             {
-                guiManager.progressText.text = questName + " (" + numberOfItemCollected + "/" + numberOfItemToCollect + ")";
+                StartCoroutine(TypeDialogue("Task Complete! Go back to NPC", () =>
+                {
+                    guiManager.dialogueGUI.SetActive(true);
+                }));
+            }
+        }
 
-                guiManager.dialogueGUI.SetActive(true);
-                guiManager.dialogueText.text = "Task Complete! Go back to NPC";
+        IEnumerator TypeDialogue(string dialogue, System.Action onTypingComplete = null)
+        {
+            isTypingComplete = false; // Set the flag to indicate that the coroutine is running
+            guiManager.dialogueText.text = ""; // Clear the text initially
+
+            foreach (char letter in dialogue.ToCharArray())
+            {
+                guiManager.dialogueText.text += letter; // Add one letter at a time
+                yield return null; // Wait for a short time before adding the next letter
+            }
+
+            isTypingComplete = true; // Reset the flag after finishing the coroutine
+
+            // Invoke the callback function when typing is complete
+            if (onTypingComplete != null)
+            {
+                onTypingComplete.Invoke();
             }
         }
     }

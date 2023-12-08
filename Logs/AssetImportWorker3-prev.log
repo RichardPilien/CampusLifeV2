@@ -1,0 +1,260 @@
+Using pre-set license
+Built from '2021.3/staging' branch; Version is '2021.3.19f1 (c9714fde33b6) revision 13201743'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.18362) 64bit Professional' Language: 'en' Physical Memory: 16332 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\Richard\2021.3.19f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker3
+-projectPath
+D:/Richard/OnGitHubCampusLife/CampusLifeV2
+-logFile
+Logs/AssetImportWorker3.log
+-srvPort
+55156
+Successfully changed project path to: D:/Richard/OnGitHubCampusLife/CampusLifeV2
+D:/Richard/OnGitHubCampusLife/CampusLifeV2
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [21980] Host "[IP] 192.168.1.5 [Port] 0 [Flags] 2 [Guid] 1188909791 [EditorId] 1188909791 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-BKUJL5Q) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [21980] Host "[IP] 192.168.1.5 [Port] 0 [Flags] 2 [Guid] 1188909791 [EditorId] 1188909791 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-BKUJL5Q) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 105.13 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.19f1 (c9714fde33b6)
+[Subsystems] Discovering subsystems at path D:/Richard/2021.3.19f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Richard/OnGitHubCampusLife/CampusLifeV2/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1660 SUPER (ID=0x21c4)
+    Vendor:   NVIDIA
+    VRAM:     5981 MB
+    Driver:   31.0.15.4617
+Initialize mono
+Mono path[0] = 'D:/Richard/2021.3.19f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Richard/2021.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Richard/2021.3.19f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56064
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Richard/2021.3.19f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: D:/Richard/2021.3.19f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002262 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 97.39 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.641 seconds
+Domain Reload Profiling:
+	ReloadAssembly (642ms)
+		BeginReloadAssembly (69ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (468ms)
+			LoadAssemblies (68ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (111ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (284ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (97ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (120ms)
+				ProcessInitializeOnLoadMethodAttributes (57ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.003917 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 169.57 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.452 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2453ms)
+		BeginReloadAssembly (125ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (12ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (25ms)
+		EndReloadAssembly (2206ms)
+			LoadAssemblies (85ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (336ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (59ms)
+			SetupLoadedEditorAssemblies (1687ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (170ms)
+				BeforeProcessingInitializeOnLoad (85ms)
+				ProcessInitializeOnLoadAttributes (1410ms)
+				ProcessInitializeOnLoadMethodAttributes (15ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.19 seconds
+Refreshing native plugins compatible for Editor in 0.85 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4025 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 41 unused Assets / (230.6 KB). Loaded Objects now: 4504.
+Memory consumption went from 222.2 MB to 222.0 MB.
+Total: 3.245800 ms (FindLiveObjects: 0.372200 ms CreateObjectMapping: 0.106600 ms MarkObjects: 2.596900 ms  DeleteObjects: 0.169200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 612954.863683 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1001_Normal.png
+  artifactKey: Guid(b5cb358fd7c65d54e8057cbc17c4af6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1001_Normal.png using Guid(b5cb358fd7c65d54e8057cbc17c4af6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '071c81a26123ea1072a4d67fcee0b56e') in 0.278030 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1001_Glossiness.png
+  artifactKey: Guid(09ac3bf7015a2d045bd5ed87ffc61967) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1001_Glossiness.png using Guid(09ac3bf7015a2d045bd5ed87ffc61967) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c3c3a3fa8f1583b0b22628d2898ff6a') in 0.009902 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1001_Diffuse.png
+  artifactKey: Guid(b7fcf6d5869dcdc46aabcd5af8f28aa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1001_Diffuse.png using Guid(b7fcf6d5869dcdc46aabcd5af8f28aa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '299ce4cdee2cc8dbb941e223815abac7') in 0.010046 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1002_Diffuse.png
+  artifactKey: Guid(befe36b355cc1174da6336906b3d98c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1002_Diffuse.png using Guid(befe36b355cc1174da6336906b3d98c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df52f162b23af40804c3b1d27b54d83e') in 0.016364 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_body.mat
+  artifactKey: Guid(c8ea6b1f849089245ba57b9d84561f1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_body.mat using Guid(c8ea6b1f849089245ba57b9d84561f1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44303c552bf0514f486358c3ee5afbe4') in 0.097019 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Models/Characters/Classmates/Matthew.fbx
+  artifactKey: Guid(db09c5082caeb5040ae766dfddaa5f92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Matthew.fbx using Guid(db09c5082caeb5040ae766dfddaa5f92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5f475ac3195e8a71258de7b4920a073') in 0.166281 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 119.170096 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1001_Diffuse.png
+  artifactKey: Guid(3b31fdeb3d535d3458ebc8ff7e1ad457) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1001_Diffuse.png using Guid(3b31fdeb3d535d3458ebc8ff7e1ad457) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb0e3fdb833ce4d930b6015b89a7a5a4') in 0.035126 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1001_Glossiness.png
+  artifactKey: Guid(99b959578e4114740897ff131731e0fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1001_Glossiness.png using Guid(99b959578e4114740897ff131731e0fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '342e3550943abf02de401125fb216588') in 0.007181 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1001_Specular.png
+  artifactKey: Guid(ea7a26320793ee840be5030a48ae77f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1001_Specular.png using Guid(ea7a26320793ee840be5030a48ae77f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f84074fb74f778819ff64348d89db8c1') in 0.011138 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1002_Diffuse.png
+  artifactKey: Guid(e6e21f67761eada4798604b7abb8c665) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1002_Diffuse.png using Guid(e6e21f67761eada4798604b7abb8c665) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c94fe9e125b96ceaacb84060a4deb98a') in 0.012166 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_1001_Normal.png
+  artifactKey: Guid(09cc8acbebf35984caa8e58d24e091fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_1001_Normal.png using Guid(09cc8acbebf35984caa8e58d24e091fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4652b96873c286d9307affbe9bdd62ed') in 0.008803 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.007828 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_body.mat
+  artifactKey: Guid(c8ea6b1f849089245ba57b9d84561f1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_body.mat using Guid(c8ea6b1f849089245ba57b9d84561f1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09b0d0739b9559904f557e9a8b6a8bbe') in 0.018409 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_hair.mat
+  artifactKey: Guid(3a908116386cfe8439337adccc7b1be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_hair.mat using Guid(3a908116386cfe8439337adccc7b1be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df6b11d8f853511d161823372dceaa8c') in 0.022847 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.268557 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_body.mat
+  artifactKey: Guid(c8ea6b1f849089245ba57b9d84561f1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_body.mat using Guid(c8ea6b1f849089245ba57b9d84561f1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70c639d24c8b4eb0375bc81886df96ba') in 0.016857 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Models/Characters/Classmates/Ch31_nonPBR.fbx
+  artifactKey: Guid(f0073a2804f8c76408ca19c8129a57fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Characters/Classmates/Ch31_nonPBR.fbx using Guid(f0073a2804f8c76408ca19c8129a57fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8deb813a5b8abf2df0ae9a99c50442c6') in 0.102304 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

@@ -3,10 +3,12 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Basic3rdPersonMovementAndCamera.CameraZoom
     - Basic3rdPersonMovementAndCamera.CollectTaskGiver
-    - Basic3rdPersonMovementAndCamera.DialogueGiver
     - Basic3rdPersonMovementAndCamera.FootStepScript
     - Basic3rdPersonMovementAndCamera.GUIManager
     - Basic3rdPersonMovementAndCamera.MainMenu
+    - Basic3rdPersonMovementAndCamera.NPCAnimation
+    - Basic3rdPersonMovementAndCamera.NPCCallout
+    - Basic3rdPersonMovementAndCamera.NPCController
     - Basic3rdPersonMovementAndCamera.PauseMenu
     - Basic3rdPersonMovementAndCamera.Player
     - Basic3rdPersonMovementAndCamera.PlayerAnimationEventTrigger
@@ -14,6 +16,8 @@ ScriptsOnlyBuild:
     - Basic3rdPersonMovementAndCamera.PlayerInput
     - Basic3rdPersonMovementAndCamera.PlayerProgressData
     - Basic3rdPersonMovementAndCamera.PlayerSO
+    - Basic3rdPersonMovementAndCamera.TutorialScript
+    - DialogueManager
     - NPCQuiz
     - QuizManager
     - TimeController
@@ -34,6 +38,10 @@ ScriptsOnlyBuild:
     - UnityEngine.InputSystem.RemoteInputPlayerConnection
     Unity.ProBuilder.Editor.dll:
     - UnityEditor.ProBuilder.ProBuilderEditor
+    - UnityEditor.ProBuilder.ProBuilderShapeEditor
+    - UnityEditor.ProBuilder.ProbuilderMoveTool
+    - UnityEditor.ProBuilder.ProbuilderRotateTool
+    - UnityEditor.ProBuilder.ProbuilderScaleTool
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -45,8 +53,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -245,6 +255,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -258,65 +270,73 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1686}
     - Class: 114
-      Script: {instanceID: 2136}
+      Script: {instanceID: 2082}
     - Class: 114
-      Script: {instanceID: 2204}
+      Script: {instanceID: 2140}
     - Class: 114
-      Script: {instanceID: 2834}
+      Script: {instanceID: 2208}
     - Class: 114
-      Script: {instanceID: 2906}
+      Script: {instanceID: 2838}
     - Class: 114
-      Script: {instanceID: 2978}
+      Script: {instanceID: 2910}
     - Class: 114
-      Script: {instanceID: 3064}
+      Script: {instanceID: 2982}
     - Class: 114
-      Script: {instanceID: 3140}
+      Script: {instanceID: 3068}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3144}
     - Class: 114
-      Script: {instanceID: 3500}
+      Script: {instanceID: 3252}
     - Class: 114
-      Script: {instanceID: 3704}
+      Script: {instanceID: 3322}
     - Class: 114
-      Script: {instanceID: 4012}
+      Script: {instanceID: 3506}
     - Class: 114
-      Script: {instanceID: 4022}
+      Script: {instanceID: 3554}
     - Class: 114
-      Script: {instanceID: 4278}
+      Script: {instanceID: 3712}
     - Class: 114
-      Script: {instanceID: 4400}
+      Script: {instanceID: 3848}
     - Class: 114
-      Script: {instanceID: 4488}
+      Script: {instanceID: 4020}
     - Class: 114
-      Script: {instanceID: 5212}
+      Script: {instanceID: 4284}
     - Class: 114
-      Script: {instanceID: 5480}
+      Script: {instanceID: 4406}
     - Class: 114
-      Script: {instanceID: 5644}
+      Script: {instanceID: 4494}
     - Class: 114
-      Script: {instanceID: 5988}
+      Script: {instanceID: 5218}
     - Class: 114
-      Script: {instanceID: 6492}
+      Script: {instanceID: 5486}
     - Class: 114
-      Script: {instanceID: 6632}
+      Script: {instanceID: 5650}
     - Class: 114
-      Script: {instanceID: 6668}
+      Script: {instanceID: 5994}
     - Class: 114
-      Script: {instanceID: 6870}
+      Script: {instanceID: 6500}
     - Class: 114
-      Script: {instanceID: 7272}
+      Script: {instanceID: 6640}
     - Class: 114
-      Script: {instanceID: 7398}
+      Script: {instanceID: 6676}
     - Class: 114
-      Script: {instanceID: 7416}
+      Script: {instanceID: 6810}
     - Class: 114
-      Script: {instanceID: 7746}
+      Script: {instanceID: 6880}
     - Class: 114
-      Script: {instanceID: 8058}
+      Script: {instanceID: 7282}
     - Class: 114
-      Script: {instanceID: 8152}
+      Script: {instanceID: 7408}
     - Class: 114
-      Script: {instanceID: 9534}
+      Script: {instanceID: 7426}
+    - Class: 114
+      Script: {instanceID: 7756}
+    - Class: 114
+      Script: {instanceID: 8068}
+    - Class: 114
+      Script: {instanceID: 8162}
+    - Class: 114
+      Script: {instanceID: 9544}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -383,27 +403,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1676}
     - Class: 114
-      Script: {instanceID: 2398}
+      Script: {instanceID: 2402}
     - Class: 114
-      Script: {instanceID: 2906}
+      Script: {instanceID: 2910}
     - Class: 114
-      Script: {instanceID: 3140}
+      Script: {instanceID: 3144}
     - Class: 114
-      Script: {instanceID: 3500}
+      Script: {instanceID: 3506}
     - Class: 114
-      Script: {instanceID: 3560}
+      Script: {instanceID: 3568}
     - Class: 114
-      Script: {instanceID: 4780}
+      Script: {instanceID: 4786}
     - Class: 114
-      Script: {instanceID: 5094}
+      Script: {instanceID: 5100}
     - Class: 114
-      Script: {instanceID: 5988}
+      Script: {instanceID: 5994}
     - Class: 114
-      Script: {instanceID: 6668}
+      Script: {instanceID: 6676}
     - Class: 114
-      Script: {instanceID: 6870}
+      Script: {instanceID: 6880}
     - Class: 114
-      Script: {instanceID: 7272}
+      Script: {instanceID: 7282}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -514,6 +534,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Basic3rdPersonMovementAndCamera
+    className: NPCPuzzle
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnMouseExitMessageListener
@@ -523,6 +549,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: 
     className: CinemachineCameraOffset
+  - hash:
+      serializedVersion: 2
+      Hash: e55510d4d80cc9d6bce229aaad266f05
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Basic3rdPersonMovementAndCamera
+    className: NPCController
   - hash:
       serializedVersion: 2
       Hash: 65ee7258d20d1972b6e310aa3cbbdb0b
@@ -741,6 +773,12 @@ ScriptsOnlyBuild:
     className: Cinemachine3rdPersonFollow
   - hash:
       serializedVersion: 2
+      Hash: 9bd6fbbd87879fe09f6c88ff29177979
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DialogueManager
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -759,6 +797,12 @@ ScriptsOnlyBuild:
     className: OnScreenButton
   - hash:
       serializedVersion: 2
+      Hash: 515f07ec5b325490bbf07069d994e076
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Basic3rdPersonMovementAndCamera
+    className: questManage
+  - hash:
+      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -775,6 +819,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Button
+  - hash:
+      serializedVersion: 2
+      Hash: d554d9109cb2738fbdd9b87fd0b0eb08
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Basic3rdPersonMovementAndCamera
+    className: TutorialScript
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -855,6 +905,12 @@ ScriptsOnlyBuild:
     className: UnityOnSelectMessageListener
   - hash:
       serializedVersion: 2
+      Hash: a064ddaf8f981efc803a1fc5f62ef4f0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Basic3rdPersonMovementAndCamera
+    className: NPCCallout
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -868,12 +924,6 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Basic3rdPersonMovementAndCamera
-    className: DialogueNPC
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnControllerColliderHitMessageListener
@@ -883,12 +933,6 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineFramingTransposer
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Basic3rdPersonMovementAndCamera
-    className: DialogueGiver
   - hash:
       serializedVersion: 2
       Hash: 27ec3360f0c0a6803ba71cc3106480b8
@@ -975,7 +1019,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 1f09ecb9013343e70a88cb00b43b53e5
+      Hash: ceba59ec7073ca6a1661630ce49b0e82
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NPCQuiz
@@ -1330,6 +1374,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Basic3rdPersonMovementAndCamera
+    className: Testing
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnDeselectMessageListener
@@ -1429,6 +1479,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: AspectRatioFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Basic3rdPersonMovementAndCamera
+    className: NPCAnimation
   - hash:
       serializedVersion: 2
       Hash: 760787567e1b60d64a3e421ab83ee14a

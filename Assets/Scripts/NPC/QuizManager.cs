@@ -19,6 +19,10 @@ public class QuizManager : MonoBehaviour
     public GameObject TaskInfoGUI;
     public GameObject PlayerCamera;
 
+    // public bool f1IsClicked;
+    // public bool f2IsClicked;
+
+    // private bool isPaused;
 
 
     void Start()
@@ -30,8 +34,8 @@ public class QuizManager : MonoBehaviour
 
     void Update()
     {
-        EnablePlayerGradeAndIDGUI();
-        EnableTaskInfoGUI();
+        // EnablePlayerGradeAndIDGUI();
+        // EnableTaskInfoGUI();
     }
 
     public void UpdateTotalCorrectAnswers(bool isCorrect)
@@ -66,31 +70,35 @@ public class QuizManager : MonoBehaviour
         percentageText.text = percentage.ToString("F1") + "%";
     }
 
-    public void EnablePlayerGradeAndIDGUI()
-    {
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            PlayerGradeAndIDGUI.SetActive(!PlayerGradeAndIDGUI.activeSelf);
-            PlayerCamera.SetActive(!PlayerCamera.activeSelf);
+    // public void EnablePlayerGradeAndIDGUI()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.F2) && f1IsClicked == false)
+    //     {
+    //         f2IsClicked = !f2IsClicked;
 
-            Time.timeScale = Time.timeScale == 0f ? 1f : 0f;
+    //         PlayerGradeAndIDGUI.SetActive(!PlayerGradeAndIDGUI.activeSelf);
+    //         PlayerCamera.SetActive(!PlayerCamera.activeSelf);
 
-            Cursor.visible = !Cursor.visible;
-            Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
-        }
-    }
+    //         Time.timeScale = Time.timeScale == 0f ? 1f : 0f;
 
-    public void EnableTaskInfoGUI()
-    {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            TaskInfoGUI.SetActive(!TaskInfoGUI.activeSelf);
-            PlayerCamera.SetActive(!PlayerCamera.activeSelf);
+    //         Cursor.visible = !Cursor.visible;
+    //         Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+    //     }
+    // }
 
-            Time.timeScale = Time.timeScale == 0f ? 1f : 0f;
+    // public void EnableTaskInfoGUI()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.F1) && f2IsClicked == false)
+    //     {
+    //         f1IsClicked = !f1IsClicked;
 
-            Cursor.visible = !Cursor.visible;
-            Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
-        }
-    }
+    //         TaskInfoGUI.SetActive(!TaskInfoGUI.activeSelf);
+    //         PlayerCamera.SetActive(!PlayerCamera.activeSelf);
+
+    //         Time.timeScale = Time.timeScale == 0f ? 1f : 0f;
+
+    //         Cursor.visible = !Cursor.visible;
+    //         Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+    //     }
+    // }
 }

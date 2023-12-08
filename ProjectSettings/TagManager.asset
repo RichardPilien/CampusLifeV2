@@ -11,6 +11,10 @@ TagManager:
   - Quiz
   - QuizManager
   - GUI
+  - ProfessorScript
+  - Collector
+  - Tutorial
+  - NPCController
   layers:
   - Default
   - TransparentFX

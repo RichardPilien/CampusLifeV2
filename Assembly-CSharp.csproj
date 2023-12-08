@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>Basic3rdPersonMovementAndCamera</RootNamespace>
-    <ProjectGuid>{d4c346b9-db09-730d-1a6d-cc80027e5af4}</ProjectGuid>
+    <ProjectGuid>{fb0a592e-becb-dcc8-6040-3b2c5b83d612}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -38,6 +38,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\NPC\guiManager\GUIManager.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Stopping\PlayerStoppingState.cs" />
+     <Compile Include="Assets\Scripts\NPC\NPCPuzzle\NPCPuzzle.cs" />
+     <Compile Include="Assets\Scripts\NPC\NPCControllerMatthew.cs" />
      <Compile Include="Assets\Scripts\MainMenu\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Moving\PlayerRunData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Airborne\PlayerFallData.cs" />
@@ -46,17 +48,19 @@
      <Compile Include="Assets\Scripts\Camera\CameraZoom.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Moving\PlayerWalkData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Landing\PlayerRollingState.cs" />
+     <Compile Include="Assets\Scripts\NPC\NPCDialogue\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Landing\PlayerRollData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\PlayerGroundedState.cs" />
+     <Compile Include="Assets\Scripts\NPC\questManage.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\PlayerIdlingState.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Moving\PlayerRunningState.cs" />
+     <Compile Include="Assets\Scripts\NPC\TutorialScript.cs" />
      <Compile Include="Assets\Scripts\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\Scripts\NPC\CollectTask\CollectTaskGiver.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Moving\PlayerWalkingState.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Airborne\PlayerFallingState.cs" />
+     <Compile Include="Assets\Scripts\NPC\NPCCallout.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\Cameras\PlayerCameraRecenteringData.cs" />
-     <Compile Include="Assets\Scripts\NPC\NPCDialogue\DialogueNPC.cs" />
-     <Compile Include="Assets\Scripts\NPC\NPCDialogue\DialogueGiver.cs" />
      <Compile Include="Assets\Scripts\Data\Colliders\SlopeData.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Airborne\PlayerJumpingState.cs" />
      <Compile Include="Assets\Polytope Studio\Lowpoly_Demos\Environment_Free\Helpers\PlayerMovement.cs" />
@@ -76,12 +80,14 @@
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Airborne\PlayerAirborneState.cs" />
      <Compile Include="Assets\InputActions\Characters\Player\PlayerInputActions.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\Colliders\PlayerTriggerColliderData.cs" />
+     <Compile Include="Assets\Scripts\NPC\NPCPuzzle\Testing.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Utilities\Colliders\PlayerCapsuleColliderUtility.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\PlayerMovementState.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Utilities\Animations\PlayerAnimationEventTrigger.cs" />
      <Compile Include="Assets\Polytope Studio\Lowpoly_Demos\Environment_Free\Helpers\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Utilities\Colliders\CapsuleColliderUtility.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\Data\States\Grounded\Moving\PlayerSprintData.cs" />
+     <Compile Include="Assets\Scripts\NPC\NPCAnimation.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Moving\PlayerSprintingState.cs" />
      <Compile Include="Assets\Scripts\Characters\Player\StateMachines\Movement\States\Grounded\Stopping\PlayerHardStoppingState.cs" />
      <Compile Include="Assets\Scripts\Data\Colliders\DefaultColliderData.cs" />
@@ -386,10 +392,10 @@
         <HintPath>D:\Richard\2021.3.19f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-        <HintPath>D:\Richard\BetterCampusLife\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="ReportGeneratorMerged">
-        <HintPath>D:\Richard\BetterCampusLife\Library\PackageCache\com.unity.testtools.codecoverage@1.2.2\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\PackageCache\com.unity.testtools.codecoverage@1.2.2\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>D:\Richard\2021.3.19f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -758,94 +764,94 @@
         <HintPath>D:\Richard\2021.3.19f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.AddOns.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
-        <HintPath>D:\Richard\BetterCampusLife\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+        <HintPath>D:\Richard\OnGitHubCampusLife\CampusLifeV2\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
